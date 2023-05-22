@@ -1,7 +1,6 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../data-source"
 import { User } from "../../entities"
-import { AppError } from "../../errors"
 import { IUserUpdate, IUserReturn } from "../../interfaces/users.interface"
 import { returnUserSchema } from "../../schemas/users.shema"
 import { hashSync } from "bcryptjs"
@@ -13,10 +12,6 @@ const updateUserService = async (newUserData: IUserUpdate, idUser: string): Prom
     const findUser = await userRepository.findOneBy({
         id: idUser
     })
-
-    if(!findUser){
-        throw new AppError("User not found", 404)
-    }
 
     if (newUserData?.password){
         newUserData.password = hashSync(newUserData.password, 10)

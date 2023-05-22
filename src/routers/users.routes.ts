@@ -7,11 +7,12 @@ import { createUserController,
 from "../controllers/user.controller"
 import { userSchema } from "../schemas/users.shema"
 import dataIsValidMiddleware from "../middlewares/verifyData.middleware"
+import userIdExistMiddleware from "../middlewares/userIdExist.middleware"
 
 export const userRoutes = Router()
 
 userRoutes.post("", dataIsValidMiddleware(userSchema), createUserController)
 userRoutes.get("", listAllUsersController)
-userRoutes.get("/:id", listUserController)
-userRoutes.patch("/:id", updateUserController)
-userRoutes.delete("/:id", deleteUserController)
+userRoutes.get("/:id", userIdExistMiddleware, listUserController)
+userRoutes.patch("/:id", userIdExistMiddleware, updateUserController)
+userRoutes.delete("/:id", userIdExistMiddleware, deleteUserController)
