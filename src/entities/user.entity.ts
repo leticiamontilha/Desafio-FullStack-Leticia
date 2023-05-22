@@ -7,12 +7,13 @@ import {
     BeforeInsert,
     OneToMany
  } from "typeorm"
+ import { Contacts } from "./contact.entity"
 
  @Entity('users')
 
  export class User {
-    @PrimaryGeneratedColumn('increment')
-    id: number
+    @PrimaryGeneratedColumn('uuid')
+    id: string
 
     @Column({ length: 50})
     name: string
@@ -37,7 +38,7 @@ import {
         }
     }
 
-    // @OneToMany(() => Contacts, (contact) => contact.user, { eager: true })
-    // contacts: Contacts[]
+    @OneToMany(() => Contacts, (contact) => contact.user, { eager: true })
+    contacts: Contacts[]
 
  }
