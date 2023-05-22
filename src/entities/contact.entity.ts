@@ -8,8 +8,8 @@ import {
  } from "typeorm"
  import { User } from "./user.entity"
 
- @Entity("contacts")
- export class Contacts{
+ @Entity("contact")
+ export class Contact{
     @PrimaryGeneratedColumn('uuid')
     id: string
 
@@ -26,6 +26,5 @@ import {
     createdAt: Date
 
     @ManyToOne(() => User, (user) => user.contacts, {onDelete: "CASCADE"})
-    @JoinColumn()
     user: User
  }

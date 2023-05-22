@@ -4,10 +4,12 @@ import {
     Column, 
     PrimaryGeneratedColumn,
     CreateDateColumn,
+    UpdateDateColumn,
+    DeleteDateColumn,
     BeforeInsert,
     OneToMany
  } from "typeorm"
- import { Contacts } from "./contact.entity"
+ import { Contact } from "./contact.entity"
 
  @Entity('users')
 
@@ -28,7 +30,13 @@ import {
     password: string 
 
     @CreateDateColumn({type: "date"})
-    createdAt: string | Date
+    createdAt: string 
+
+    @UpdateDateColumn({type: "date"})
+    updatedAt: string 
+
+    @DeleteDateColumn({type: "date"})
+    deletedAt: string 
 
     @BeforeInsert()
     hashPassword(){
@@ -38,7 +46,7 @@ import {
         }
     }
 
-    @OneToMany(() => Contacts, (contact) => contact.user, { eager: true })
-    contacts: Contacts[]
+    @OneToMany(() => Contact, (contact) => contact.user)
+    contacts: Contact[]
 
  }
