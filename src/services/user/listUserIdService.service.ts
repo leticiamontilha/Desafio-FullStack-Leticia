@@ -1,17 +1,19 @@
 import { AppDataSource } from "../../data-source"
 import { User } from "../../entities"
-import { IUserReturn } from "../../interfaces/users.interface"
+import { returnUserSchema } from "../../schemas/users.shema"
 
-const listUserService = async (userId: string): Promise<IUserReturn> => {
+const listUserService = async (userId: string) => {
     const userRepository = AppDataSource.getRepository(User)
     
-    const findUser = await userRepository.findOneBy(
-        {
-            id: userId
+    const findUser = await userRepository.findOne({
+            where: {id: userId},
+            relations: {contacts: true}
         }
     )
 
-    return findUser!
+    const returnUser = returnUserSchema.parse(findUser)
+
+    return returnUser
 }
 
 export default listUserService

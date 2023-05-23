@@ -29,14 +29,14 @@ import {
     @Column({length: 120})
     password: string 
 
-    @CreateDateColumn({type: "date"})
-    createdAt: string 
+    @CreateDateColumn()
+    createdAt: Date 
 
-    @UpdateDateColumn({type: "date"})
-    updatedAt: string 
+    @UpdateDateColumn()
+    updatedAt: Date 
 
-    @DeleteDateColumn({type: "date"})
-    deletedAt: string 
+    @DeleteDateColumn()
+    deletedAt: Date 
 
     @BeforeInsert()
     hashPassword(){

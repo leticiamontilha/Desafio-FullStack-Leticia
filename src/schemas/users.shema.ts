@@ -7,10 +7,19 @@ const userSchema = z.object({
     password: z.string().min(4).max(120)   
 })
 
-const returnUserSchema = userSchema.extend({
+const contactsSchema = z.object({
     id: z.string(),
-    createdAt: z.string()
-}).omit({password: true})
+    email: z.string().email(),
+    name: z.string(),
+    phone_number: z.string(),
+  });
+
+const returnUserSchema = userSchema
+  .extend({
+    id: z.string(),
+    createdAt: z.date(),
+    contacts: z.array(contactsSchema).default([]),
+  }).omit({ password: true })
 
 const returnAllUsersSchema = returnUserSchema.array()
 
@@ -25,5 +34,6 @@ export {
     userSchema,
     returnUserSchema,
     returnAllUsersSchema,
-    updateUserSchema   
+    updateUserSchema,
+    contactsSchema  
 }
