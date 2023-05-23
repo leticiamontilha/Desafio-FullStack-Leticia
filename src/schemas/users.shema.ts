@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { contactsSchema } from './contact.schema';
 
 const userSchema = z.object({
     name: z.string().min(3).max(50),
@@ -7,12 +8,6 @@ const userSchema = z.object({
     password: z.string().min(4).max(120)   
 })
 
-const contactsSchema = z.object({
-    id: z.string(),
-    email: z.string().email(),
-    name: z.string(),
-    phone_number: z.string(),
-  });
 
 const returnUserSchema = userSchema
   .extend({
