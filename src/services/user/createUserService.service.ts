@@ -3,6 +3,7 @@ import { response } from "express"
 import { User } from "../../entities"
 import { IUser, IUserReturn } from "../../interfaces/users.interface"
 import { returnUserSchema } from "../../schemas/users.shema"
+import { AppError } from "../../errors"
 
 const createUserService = async (userData: IUser): Promise<IUserReturn> => {
     const userRepository = AppDataSource.getRepository(User)
@@ -14,9 +15,7 @@ const createUserService = async (userData: IUser): Promise<IUserReturn> => {
     })
 
     if(emailExist){
-        response.status(409).json({
-            message: "Email already exists"
-       })
+        throw new AppError("Email already exists", 409)
     }
 
     const user = userRepository.create(userData)

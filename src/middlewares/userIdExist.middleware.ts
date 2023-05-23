@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import { Repository } from "typeorm"
 import { AppDataSource } from "../data-source"
 import { User } from "../entities"
+import { AppError } from "../errors"
 
 const userIdExistMiddleware = async (request: Request, response: Response, next: NextFunction): Promise<void> =>{
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
@@ -13,9 +14,7 @@ const userIdExistMiddleware = async (request: Request, response: Response, next:
     })
     
     if(!findUserId){
-        response.status(409).json({
-            message: "User not Found"
-       })
+        throw new AppError("User not Found", 409)
     }
 
     return next()
