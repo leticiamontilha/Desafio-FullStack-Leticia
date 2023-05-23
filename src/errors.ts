@@ -1,5 +1,4 @@
-import { NextFunction } from "express"
-import { Request, Response } from "express"
+import { Request, Response, NextFunction } from "express"
 import { ZodError } from "zod"
 
 class AppError extends Error {

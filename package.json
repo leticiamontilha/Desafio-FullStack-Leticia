@@ -28,7 +28,7 @@
     "pg": "^8.11.0",
     "pg-format": "^1.0.4",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.16",
+    "typeorm": "0.3.10",
     "zod": "^3.21.4"
   }
 }

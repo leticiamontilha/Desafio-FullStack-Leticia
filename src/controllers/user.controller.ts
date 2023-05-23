@@ -1,4 +1,4 @@
-import { Request, Response, response} from "express"
+import { Request, Response } from "express"
 import createUserService from "../services/user/createUserService.service"
 import listAllUsersService from "../services/user/listAllUserService.service"
 import listUserService from "../services/user/listUserIdService.service"
@@ -6,10 +6,10 @@ import { IUserUpdate } from "../interfaces/users.interface"
 import updateUserService from "../services/user/updateUserService.service"
 import softDeleteUserService from "../services/user/deleteUserService.service"
 
-const createUserController = async (request: Request, Response:Response) => {
+const createUserController = async (request: Request, response: Response) => {
     const userData = request.body
-    console.log(userData)
     const user = await createUserService(userData)
+    
     return response.status(201).json(user)
 }
 

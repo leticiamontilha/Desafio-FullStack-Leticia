@@ -4,7 +4,6 @@ import createLoginService from "../services/Login/loginUserService"
 
 const createLoginController = async (request: Request, response: Response): Promise<Response> => {
     const loginData: ILogin = request.body
-    console.log(loginData)
     const token = await createLoginService(loginData)
 
     return response.json({token})
