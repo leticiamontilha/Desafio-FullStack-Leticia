@@ -3,8 +3,7 @@ import { z } from 'zod'
 const contactsSchema = z.object({
     name: z.string(),
     email: z.string().email(),
-    phone_number: z.string(),
-    user: z.any()
+    phone_number: z.string()
   })
 
   const returnContactSchema = contactsSchema

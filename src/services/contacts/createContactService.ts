@@ -21,14 +21,13 @@ const createContactService = async (contactData: IContact, token: string) => {
     })
 
     const findUser = await userRepository.findOneBy({
-        id: userId!
+        id: userId
     })
 
     const findNameContact = await contactRepository.findOneBy({
         name: contactData.name
     })
     
-
     if(findNameContact){
         throw new AppError(
             "This name is already on your contacts list"

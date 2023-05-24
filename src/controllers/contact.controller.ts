@@ -10,7 +10,10 @@ const createContactController = async (request: Request, response: Response) => 
 
     const createContact = await createContactService(contactData, token)
 
-    return response.status(201).json(createContact)
+    const { user, ...createContactRest} = createContact
+    const userId = user.id
+
+    return response.status(201).json({...createContactRest, userId})
 }
 
 const listContactsController = async (request: Request, response: Response) => {

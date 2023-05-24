@@ -6,7 +6,7 @@ import ensureAuthMidlleware from "../middlewares/ensureAuth.middleware"
 
 const contactsRoute: Router = Router()
 
-contactsRoute.post("", dataIsValidMiddleware(contactsSchema), createContactController)
+contactsRoute.post("", ensureAuthMidlleware, dataIsValidMiddleware(contactsSchema), createContactController)
 contactsRoute.get("", ensureAuthMidlleware, listContactsController)
 contactsRoute.patch("/:id", ensureAuthMidlleware, updateContactController)
 contactsRoute.delete("/:id", ensureAuthMidlleware, deleteContactController )

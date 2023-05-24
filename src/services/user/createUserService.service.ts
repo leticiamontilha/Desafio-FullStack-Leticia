@@ -1,5 +1,4 @@
 import { AppDataSource } from "../../data-source"
-import { response } from "express"
 import { User } from "../../entities"
 import { IUser, IUserReturn } from "../../interfaces/users.interface"
 import { returnUserSchema } from "../../schemas/users.shema"

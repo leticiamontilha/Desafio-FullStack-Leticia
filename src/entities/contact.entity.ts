@@ -26,5 +26,5 @@ import {
     createdAt: Date
 
     @ManyToOne(() => User, (user) => user.contacts, {onDelete: "CASCADE"})
-    user: User
+    user: User 
  }
