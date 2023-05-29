@@ -21,8 +21,8 @@ const listAllUsersController = async (request: Request, response: Response) => {
 }
 
 const listUserController = async (request: Request, response: Response) => {
-
-   const user = await listUserService(request.params.id)
+    const token: any = request.headers.authorization
+    const user = await listUserService(token)
    
    return response.status(200).json(user)
 }

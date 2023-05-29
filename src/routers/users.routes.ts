@@ -13,9 +13,8 @@ import ensureAuthMidlleware from "../middlewares/ensureAuth.middleware"
 export const userRoutes = Router()
 
 userRoutes.post("", dataIsValidMiddleware(userSchema),createUserController)
-userRoutes.get("", ensureAuthMidlleware, listAllUsersController)
 userRoutes.get(
-        "/:id",
+        "",
         ensureAuthMidlleware,
         userIdExistMiddleware, 
         listUserController
